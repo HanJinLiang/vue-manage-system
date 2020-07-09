@@ -3,7 +3,7 @@
 
 
         <div class="left-content">
-            <el-button type="primary" icon="el-icon-menu" size="mini"></el-button>
+            <el-button  type="plain" icon="el-icon-menu" size="mini" @click="collapseMenu()"></el-button>
 
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -14,13 +14,13 @@
             </el-breadcrumb>
         </div>
         <div class="right-content">
-            <el-dropdown trigger="click" size="mini">
+            <el-dropdown trigger="click" size="mini" @command="handleCommand">
                   <span class="el-dropdown-link">
                       <el-image :src="userImg" class="userImg"></el-image>
                   </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item>个人中心</el-dropdown-item>
-                    <el-dropdown-item>退出</el-dropdown-item>
+                    <el-dropdown-item command="logout">退出</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
@@ -39,6 +39,17 @@
             ...mapState({
                 current: state => state.tab.currentMenu
             })
+        },
+        methods:{
+            collapseMenu(){
+                this.$store.commit('collapseMenu');
+            },
+            handleCommand(command) {
+                if(command==="logout"){
+                    //退出登录
+                    this.$router.push({path:'login'})
+                }
+            }
         }
     }
 </script>
@@ -70,7 +81,8 @@
 <style lang="scss">
     .el-breadcrumb__item{
         .el-breadcrumb__inner{
-            color: #f4f4f4;
+            color: #666666;
+            font-weight: normal;
         }
         &:last-child{
             .el-breadcrumb__inner{

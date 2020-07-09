@@ -6,7 +6,9 @@
                 :closable="tag.name!=='home'"
                 :disable-transitions="false"
                 size="small"
-                @close="handleClose(tag)">
+                @click="changeMenu(tag)"
+                @close="handleClose(tag)"
+                :effect="tag.name===$route.name?'dark':'plain'">
             {{tag.label}}
         </el-tag>
     </div>
@@ -21,7 +23,11 @@
             },
             ...mapMutations({
                 closeTab: 'closeTab'
-            })
+            }),
+            changeMenu(item){
+                this.$router.push({name:item.name})
+                this.$store.commit("selectMenu",item);
+            }
         },
         computed:{
             ...mapState({
@@ -36,6 +42,7 @@
         padding: 20px;
         .el-tag{
             margin-right: 15px;
+            cursor: pointer;
         }
     }
 </style>

@@ -4,7 +4,8 @@
             class="el-menu-vertical-demo"
             background-color="#545c64"
             text-color="#fff"
-            active-text-color="#ffd04b">
+            active-text-color="#ffd04b"
+            :collapse="isCollapse">
         <el-menu-item  v-for="item in noChildren" :key="item.path" :index="item.path" @click="clickMenu(item)">
             <i :class="'el-icon-' + item.icon"></i>
             <span slot="title">{{item.label}}</span>
@@ -24,6 +25,7 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     export default {
        data(){
            return{
@@ -31,7 +33,7 @@
                    {
                        path:"/",
                        label:"首页",
-                       icon:"home",
+                       icon:"s-home",
                        name:"home"
                    },
                    {
@@ -72,9 +74,13 @@
             hasChildren(){
                 return this.asideMenu.filter(item => item.children);
             },
+            ...mapState({
+                isCollapse: state => state.tab.isCollapse
+            })
         },
         methods:{
            clickMenu(item){
+               this.$router.push({name:item.name})
                this.$store.commit("selectMenu",item)
            }
         }
@@ -85,5 +91,9 @@
     .el-menu{
         height: 100%;
         border: none;
+    }
+    .el-menu-vertical-demo:not(.el-menu--collapse) {
+        width: 200px;
+        min-height: 400px;
     }
 </style>

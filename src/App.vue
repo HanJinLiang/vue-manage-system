@@ -8,6 +8,8 @@
 <style lang="scss">
 #app{
   height: 100vh;
-  padding: 0;
 }
+  body{
+    margin: 0;
+  }
 </style>

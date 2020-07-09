@@ -1,5 +1,6 @@
 export default{
     state: {
+        isCollapse:false,
         menu:[],
         currentMenu:{},
         tabsList:[ {
@@ -28,6 +29,9 @@ export default{
             let result= state.tabsList.findIndex(item=>item.name===val.name);
             //删除
             state.tabsList.splice(result,1)
+        },
+        collapseMenu(state){
+            state.isCollapse = !state.isCollapse;
         }
     },
     actions:{
