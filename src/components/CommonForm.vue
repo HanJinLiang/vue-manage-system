@@ -14,6 +14,7 @@
 
                 <el-switch v-model="form[item.model]" v-if="'switch'===item.type"></el-switch>
 
+                <el-date-picker type="date" placeholder="选择日期" v-model="form[item.model]"  v-if="'date'===item.type"></el-date-picker>
             </el-form-item>
 
             <el-form-item>

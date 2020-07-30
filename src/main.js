@@ -13,6 +13,13 @@ import './mock'
 //第三方包
 import ElementUI from 'element-ui'
 
+import BaiduMap from 'vue-baidu-map'
+
+Vue.use(BaiduMap, {
+  // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+  ak: '4b5g9T9NKD9ICQHuPSxlth5cAb8cHZZQ'
+})
+
 
 Vue.use(ElementUI)
 Vue.prototype.$http = http

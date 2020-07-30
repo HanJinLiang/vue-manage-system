@@ -16,7 +16,7 @@
                 :title="operateType==='add'?'新增用户':'更新用户'"
                 :visible.sync="operateUserDialogVisible"
                 width="30%">
-            <CommonForm></CommonForm>
+            <CommonForm :form-label="formLabel" :form="operateForm"></CommonForm>
         </el-dialog>
 
         <div class="manage-header">
@@ -102,7 +102,7 @@
             deleteUserConfirm(){
                 this.$http.get('/user/deleteUser', {
                     params: {
-                        userId: '342',
+                        userId: this.deleteUser.id,
                     }
                 }).then(res => {
                     this.$message(res.data.msg);
